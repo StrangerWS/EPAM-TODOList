@@ -1,0 +1,17 @@
+.right-floated {
+  display: inline-block;
+  margin: auto 0px auto auto;
+}
+.left-floated {
+  display: inline-block;
+  margin: auto auto auto 0px;
+}
+.centered {
+  text-align: center;
+}
+.spaced {
+  margin: 40px auto;
+}
+.top-spaced {
+  margin: 20px auto;
+}
