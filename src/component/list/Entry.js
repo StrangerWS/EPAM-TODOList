@@ -33,7 +33,7 @@ class Entry extends PureComponent {
         />
         <Delete
           key="deleteBtn"
-          clickDelete={this.props.clickDelete.bind(this, this.props.task)}
+          clickDelete={this.props.clickDelete.bind(this, this.props.task.id)}
         />
       </tr>
     );

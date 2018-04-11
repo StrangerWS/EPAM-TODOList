@@ -1,10 +1,18 @@
-import React, { PureComponent } from "react";
+import React, { Component } from "react";
 
-class Delete extends PureComponent {
+class Delete extends Component {
+  constructor(props) {
+    super(props);
+  }
   render() {
     return (
       <td>
-        <button className="btn btn-danger centered">Delete</button>
+        <button
+          className="btn btn-danger centered"
+          onClick={this.props.clickDelete}
+        >
+          Delete
+        </button>
       </td>
     );
   }

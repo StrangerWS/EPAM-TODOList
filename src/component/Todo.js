@@ -1,57 +1,52 @@
 import React, { Component } from "react";
-import { storage } from "../initTasks";
 import Entry from "./list/Entry";
 import Search from "./control/Search";
 import Modal from "./control/Modal";
 import "./style.css";
 
 class App extends Component {
-  allTasks = storage.slice();
   state = {
-    tasks: this.allTasks.slice(),
-    modalIsOpen: false
+    storage: []
   };
 
-  taskAdd = (title, description) => {
-    let id = this.allTasks[this.allTasks.length - 1].id - 1;
+  handleAdd = (title, description) => {
+    let length = this.state.storage.length
+    let id = (length === 0) ? length + 1: this.state.storage[length - 1].id + 1;
     let task = {
-      id: id,
-      title: title,
-      description: description,
+      id,
+      title,
+      description,
       isDone: false
     };
-    storage.push(task);
+    let newStorage = this.state.storage.slice()
+    newStorage.push(task);
     this.setState({
-      tasks: this.allTasks.slice(),
-      modalIsOpen: false
+      storage: newStorage.slice()
     });
   };
 
-  taskDelete(task) {
-    let idxItem = this.state.tasks.indexOf(task);
-    this.state.tasks.splice(idxItem, 1);
-
-    idxItem = this.allTasks.indexOf(task);
-    this.allTasks.splice(idxItem, 1);
-
+  handleDelete(id) {
+    this.state.storage.indexOf({id: id});
+    this.state.storage.splice(id, 1);
     this.setState({});
+    //this.state.storage.filter((item)=>{return item !== id});
   }
 
   render() {
-    const entries = this.state.tasks
+    const entries = this.state.storage
       .slice()
-      .map((task, index) => (
+      .map(task => (
         <Entry
           key={task.id}
           task={task}
-          clickDelete={this.taskDelete.bind(this, task)}
+          clickDelete={this.handleDelete.bind(this)}
         />
       ));
     return (
       <div className="container top-spaced">
         <div className="input-group">
           <Search />
-          <Modal handleClickSave={this.taskAdd} />
+          <Modal handleSave={this.handleAdd} />
         </div>
 
         <table className="table table-striped spaced">

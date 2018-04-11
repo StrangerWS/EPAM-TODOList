@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 
 class Modal extends Component {
-  handleClickSave = () => {
-    this.props.handleClickSave(
+  handleSave = () => {
+    this.props.handleSave(
       this.refs.newTitle.value,
       this.refs.newDescription.value
     );
   };
 
-  handleClickSave = this.handleClickSave.bind(this);
+  handleSave = this.handleSave.bind(this);
 
   render() {
     return (
@@ -66,9 +66,10 @@ class Modal extends Component {
                     Close
                   </button>
                   <button
+                    data-dismiss="modal"
                     type="button"
                     className="btn btn-primary"
-                    onClick={this.handleClickSave}
+                    onClick={this.handleSave}
                   >
                     Add
                   </button>
